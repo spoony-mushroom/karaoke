@@ -3,18 +3,20 @@ d3.csv("dbexport.csv").then(function (data) {
   
     var songs = data;
   
-    var button = d3.select("#button");
+    var button = d3.select("#search");
+    var clear = d3.select("#clear");
   
     var form = d3.select("#form");
+    var inputElement = d3.select("#user-input");
   
     button.on("click", runEnter);
+    clear.on("click", _ => inputElement.property("value", ""));
     form.on("submit", runEnter);
   
     function runEnter() {
       d3.select("tbody").html("")
       d3.selectAll("p").classed('noresults', true).html("")
       d3.event.preventDefault();
-      var inputElement = d3.select("#user-input");
       var inputValue = inputElement.property("value").toLowerCase().trim();
   
       // console.log(inputValue.length);
